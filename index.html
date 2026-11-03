@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#18202a">
+  <meta name="description" content="Nathi & Maths helps NC(V) learners understand Mathematics step by step through lessons, practice and progress tracking.">
+  <title>Nathi & Maths | Your Mathematics Tutor</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="Nathi and Maths home" onclick="showScreen('home');return false">
+    <span class="logo">N</span><span><strong>Nathi & Maths</strong><small>Your Mathematics Tutor</small></span>
+  </a>
+  <label class="level-select">Learning level
+    <select id="levelSelect" aria-label="Select NC(V) level">
+      <option value="2">NC(V) Level 2</option>
+      <option value="3">NC(V) Level 3</option>
+      <option value="4" selected>NC(V) Level 4</option>
+    </select>
+  </label>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="hero">
+    <div>
+      <span class="badge">NC(V) Mathematics • Levels 2–4</span>
+      <h1>Learn Maths.<br><span>Step by step.</span></h1>
+      <p>Nathi helps you understand the method, practise with purpose and learn from mistakes. You do the thinking; Nathi guides you.</p>
+      <button class="primary" onclick="showScreen('tutor')">Ask Nathi <span aria-hidden="true">→</span></button>
+    </div>
+    <aside class="hero-card"><div class="bot" aria-hidden="true">🧠</div><h2>Learn, don't just copy.</h2><p>Build confidence by understanding why each mathematical step works.</p></aside>
+  </div>
+  <div class="section-heading"><div><span class="eyebrow">GET STARTED</span><h2>Choose a topic</h2></div><button class="text-button" onclick="showScreen('learn')">All topics →</button></div>
+  <div id="homeTopics" class="topic-grid"></div>
+</section>
+
+<section id="tutor" class="screen">
+  <span class="badge">Your learning companion</span><h1>Ask Nathi</h1>
+  <p class="muted">Ask a question or upload a clear photo of a Mathematics problem. When the secure AI service is configured, Nathi will guide you through the working step by step.</p>
+  <div class="chat" id="chat" aria-live="polite">
+    <div class="message ai"><strong>Nathi</strong><p>Hello! Tell me what you are working on. I will help you identify the topic and understand the steps.</p></div>
+  </div>
+  <div class="suggestions">
+    <button onclick="usePrompt('Teach me how to solve linear equations')">Linear equations</button>
+    <button onclick="usePrompt('Explain differentiation using an example')">Differentiation</button>
+    <button onclick="usePrompt('Explain the powers of i')">Powers of i</button>
+    <button onclick="usePrompt('Help me understand SOH CAH TOA')">Trigonometry</button>
+  </div>
+  <form class="composer" id="questionForm">
+    <label class="sr-only" for="question">Your Mathematics question</label>
+    <textarea id="question" maxlength="2000" placeholder="Type your Mathematics question..." ></textarea>
+    <div class="composer-tools">
+      <label class="upload-button" for="questionImage">＋ Add photo</label>
+      <input id="questionImage" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+      <span id="imageName" class="image-name">No photo selected</span>
+      <button class="primary" id="sendQuestion" type="submit">Send</button>
+    </div>
+    <img id="imagePreview" class="image-preview" alt="Selected Mathematics question preview" hidden>
+  </form>
+  <p class="note">Use a clear, well-lit photo showing the full question. Do not upload personal documents or private information.</p>
+  <p id="aiStatus" class="ai-status" role="status">Demo mode: connect the secure backend to enable live AI tutoring.</p>
+</section>
+
+<section id="learn" class="screen">
+  <span class="badge">Curriculum learning</span><h1>Learn Mathematics</h1>
+  <p class="muted">Select a topic to start a guided mini-lesson. Topic coverage is a starter structure and must be checked against the current DHET curriculum before commercial release.</p>
+  <div id="learnTopics" class="topic-grid large"></div>
+</section>
+
+<section id="practice" class="screen">
+  <span class="badge">Build your confidence</span><h1>Practice</h1>
+  <div class="practice-card">
+    <p id="practiceTopic" class="question-number">Functions & Algebra</p>
+    <h2 id="practiceQuestion">Solve for x: 2x + 5 = 17</h2>
+    <div id="answers" class="answers"></div>
+    <p id="feedback" role="status" aria-live="polite"></p>
+    <button class="primary" id="nextQuestion">Next question</button>
+  </div>
+</section>
+
+<section id="progress" class="screen">
+  <span class="badge">Your learning journey</span><h1>My progress</h1>
+  <div class="progress-card"><div class="score" id="overall">0%</div><div><strong>Practice accuracy</strong><p id="progressText" class="muted">Complete a question to start tracking your progress on this device.</p></div></div>
+  <div id="progressList" class="progress-list"></div>
+  <p class="note">Progress is currently saved only in this browser on this device. Account-based cloud synchronisation is planned for a later stage.</p>
+  <button class="secondary" id="resetProgress">Reset my local progress</button>
+</section>
+</main>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+  <button data-screen="home" class="active">⌂<span>Home</span></button>
+  <button data-screen="learn">▤<span>Learn</span></button>
+  <button data-screen="tutor" class="nav-main">✦<span>Ask Nathi</span></button>
+  <button data-screen="practice">✓<span>Practice</span></button>
+  <button data-screen="progress">◔<span>Progress</span></button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>

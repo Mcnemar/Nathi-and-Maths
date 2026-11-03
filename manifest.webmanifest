@@ -1,0 +1,11 @@
+{
+  "name": "Nathi & Maths",
+  "short_name": "Nathi Maths",
+  "description": "Step-by-step Mathematics support for NC(V) learners.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#18202a",
+  "icons": []
+}
