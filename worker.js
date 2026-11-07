@@ -7,7 +7,8 @@ export default {
         return json({ error: "Method not allowed." }, 405);
       }
 
-      if (!env.OPENAI_API_KEY) {
+      const AI_API_KEY = env.GROQ_API_KEY || env.OPENAI_API_KEY;
+      if (!AI_API_KEY) {
         return json({ error: "The AI service key is not configured on this Worker." }, 503);
       }
 
@@ -44,14 +45,14 @@ export default {
 
       let aiResponse;
       try {
-        aiResponse = await fetch("https://api.openai.com/v1/responses", {
+        aiResponse = await fetch("https://api.groq.com/openai/v1/responses", {
           method: "POST",
           headers: {
-            "Authorization": "Bearer " + env.OPENAI_API_KEY,
+            "Authorization": "Bearer " + AI_API_KEY,
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            model: env.OPENAI_MODEL || "gpt-5.5",
+            model: env.GROQ_MODEL || "openai/gpt-oss-20b",
             instructions:
               "You are Nathi, a patient Mathematics tutor for South African NC(V) learners at Levels 2, 3 and 4. " +
               "Teach step by step in clear, simple English. Explain the mathematical reason for each step. " +
