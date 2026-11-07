@@ -146,8 +146,9 @@ async function askNathi(event) {
   } catch (error) {
     loading.remove();
     const fallback = tutorAnswer(visiblePrompt);
-    addMessage(fallback + "\n\nLive AI is not connected. The question has not been sent to an AI service. You can still use the offline practice and lesson sections.", "ai");
-    document.getElementById("aiStatus").textContent = "Offline demo mode. To activate live tutoring, deploy the server and configure its API key.";
+    const detail = error && error.message ? error.message : "Unknown connection error";
+    addMessage(fallback + "\n\nLive AI connection problem: " + detail + ". The answer above is from offline practice, not the AI service.", "ai");
+    document.getElementById("aiStatus").textContent = "Live AI connection problem: " + detail;
     console.warn("Tutor request failed:", error);
   } finally {
     sendButton.disabled = false;
